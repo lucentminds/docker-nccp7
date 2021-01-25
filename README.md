@@ -10,17 +10,29 @@ docker build -t docker-nccp7 .
 ```
 
 ## Pulling from Docker Hub
-```
-$ docker pull lucentminds/docker-nccp7:latest
+```shell
+docker pull lucentminds/docker-nccp7:latest
 ```
 
 ## Running
 To run the container:
-```
-$ sudo docker run -d lucentminds/docker-nccp7:latest
+```shell
+sudo docker run -d lucentminds/docker-nccp7:latest
 ```
 
-Default web root:
+With all options...
+```shell
+docker run --name nccp7 -p 9022:22 -p 9080:80 -p 9443:443 \
+   --env CERTBOT_WILDCARD_DOMAIN=example.com \
+   --env CERTBOT_ACCOUNT_EMAIL=user@example.com \
+   --env ROOT_LOGIN_PASSWORD=PASSWORD \
+   --env CLOUDFLARE_ACCOUNT_EMAIL=user@example.com \
+   --env CLOUDFLARE_API_KEY=abcdef0123456789abcdef0123456789abcde \
+   -d lucentminds/nccp7
 ```
+
+## Misc
+Default web root:
+```shell
 /usr/share/nginx/html
 ```
